@@ -60,14 +60,19 @@ require_once "template/theHeader.php";
             <!-- small card -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+              <?php 
+              $sql = $conn->query("SELECT COUNT(id_pelanggan) AS TOTAL FROM pelanggan");
+              $item = mysqli_fetch_object($sql);
+              ?>
 
-                <p>User Registrations</p>
+                <h3><?= $item->TOTAL ?></h3>
+
+                <p>Jumlah Pelanggan</p>
               </div>
               <div class="icon">
                 <i class="fas fa-user-plus"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="pelanggan.php" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -77,12 +82,19 @@ require_once "template/theHeader.php";
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+              <?php
+              
+              $sql = $conn->query("SELECT COUNT(status) AS belum_bayar FROM tagihan WHERE status = 'Belum Bayar'");
 
-                <p>Unique Visitors</p>
+              $item = mysqli_fetch_object($sql);
+
+              ?>
+                <h3><?= $item->belum_bayar ?></h3>
+
+                <p>Belum Bayar</p>
               </div>
               <div class="icon">
-                <i class="fas fa-chart-pie"></i>
+                <i class="fas fa-exclamation-triangle"></i>
               </div>
               <a href="#" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
